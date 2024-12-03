@@ -1,0 +1,113 @@
+[
+  {
+    "id": 1,
+    "name": "Combo Eminence Organics",
+    "price": 850000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481145/product5_omano8.webp",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee", "drinks"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 2,
+    "name": "Combo La Roche-Posay: Face Wash & Cleansers",
+    "price": 1150000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481145/product4_k1wylt.webp",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 3,
+    "name": "10 Best Skincare Products to Reduce Redness",
+    "price": 1300000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481143/product3_dmdwoh.webp",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["food", "bread"],
+    "variantId": ["size"]
+  },
+  {
+    "id": 4,
+    "name": "La Roche-Posay Effaclar Purifyng Gel",
+    "price": 380000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481142/product2_kkz4ho.webp",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["food"],
+    "variantId": ["size"]
+  },
+  {
+    "id": 5,
+    "name": "Combo: Teenage Summer Day Skincare",
+    "price": 550000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481142/product1_znelfm.webp",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee", "matcha"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 6,
+    "name": "What is your acne telling you?",
+    "price": 38000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481133/causes_ovxvq7.jpg",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee", "milktea"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 7,
+    "name": "Why Do Teenagers Get Acne?",
+    "price": 32000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481133/facemap1_pld7fh.jpg",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 8,
+    "name": "How to Build a Morning and Evening Skincare Routine?",
+    "price": 25000,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481135/tip1_hyckk1.png",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["matcha"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 9,
+    "name": "Different Types of Acne and Treatment",
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481120/various-acne_qxoy95.webp",
+    "price": 0,
+    "sale": {
+      "type": "percent",
+      "percent": 0.2
+    },
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee", "milktea", "drinks"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 10,
+    "name": "Acne Face Map",
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481134/facemap2_m0scjj.jpg",
+    "price": 0,
+    "sale": {
+      "type": "fixed",
+      "amount": 0
+    },
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["coffee", "drinks"],
+    "variantId": ["size", "topping"]
+  },
+  {
+    "id": 11,
+    "name": "Tip for Treating Comedonal Acne",
+    "price": 0,
+    "image": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481135/tip2_n1zg61.png",
+    "description": "There is a set of mock banners available <u>here</u> in three colours and in a range of standard banner sizes",
+    "categoryId": ["milktea"],
+    "variantId": ["size", "topping"],
+    "sale": {
+      "type": "percent",
+      "percent": 0.5
+    }
+  }
+]
