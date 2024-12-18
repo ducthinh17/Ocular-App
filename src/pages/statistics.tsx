@@ -50,7 +50,15 @@ const Statistics: FC = () => {
       </Box>
 
       <Box>
-        <Text className=" ml-[15px] text-lg font-bold"> Dashboard</Text>
+        <div
+          className="relative flex justify-center items-center text-center py-6 bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 rounded-lg shadow-2xl mb-6"
+          style={{ width: "95%", height: "auto", margin: "0 auto" }}
+        >
+          <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase">
+            <span className="drop-shadow-lg">dashboard</span>
+          </h1>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-3/4 bg-white rounded-full opacity-40"></div>
+        </div>
         <Divider />
       </Box>
       <div

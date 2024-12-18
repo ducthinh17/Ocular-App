@@ -9,22 +9,15 @@ import {
   faSquarePlus,
 } from "@fortawesome/free-regular-svg-icons";
 import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../database/insert";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDz8sjOP6FWU5CghOimZnLryKWMwqcGhGo",
-  authDomain: "acnes-8b16a.firebaseapp.com",
-  projectId: "acnes-8b16a",
-  storageBucket: "acnes-8b16a.appspot.com",
-  messagingSenderId: "811496508528",
-  appId: "1:811496508528:web:f4d89974eafc89b973b8b5",
-  measurementId: "G-PTFN7B9F9D",
-};
+
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 interface SkincareData {
-  tele: string;
+  userid: string;
   ngày: {
     ngày: Date | any;
     hình: string;
@@ -84,6 +77,7 @@ const Records: FC = () => {
     setSelectedLabel(label === selectedLabel ? null : label);
   };
 
+
   return (
     <Page>
       <Header title="History" />
@@ -92,109 +86,138 @@ const Records: FC = () => {
           backgroundImage:
             "url('https://res.cloudinary.com/dwljkfseh/image/upload/v1729323375/A%CC%89nh_ma%CC%80n_hi%CC%80nh_2024-10-19_lu%CC%81c_14.33.11_s95och.png')",
           backgroundSize: "cover",
-          height: "700px", // Hoặc bạn có thể điều chỉnh theo yêu cầu
-          padding: "8px",
+          height: "700px",
+          padding: "16px",
+          overflowY: "auto",
         }}
       >
-        <Text
-          style={{
-            padding: "10px",
-            fontSize: "24px",
-            fontWeight: "bold",
-            paddingBottom: "35px",
-          }}
-        >
-          &#10020; Treatment records:
-        </Text>
+        <div className="relative text-center py-6 bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 rounded-lg shadow-2xl mb-6">
+          <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase">
+            <span className="drop-shadow-lg">History</span>
+          </h1>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-3/4 bg-white rounded-full opacity-40"></div>
+        </div>
+
         {[...groupedData.entries()].map(([dateKey, items]) => (
           <Box
             key={dateKey}
-            className="info-container rounded-lg shadow-md bg-white mb-2"
-            style={{ backgroundColor: "#f0f8ff" }}
+            className="info-container rounded-lg shadow-xl p-6 bg-gradient-to-b from-white to-blue-50 mb-4"
+            style={{
+              border: "1px solid #e0e7ff",
+              transition: "all 0.3s ease-in-out",
+            }}
           >
             <Text
               onClick={() => handleDateClick(dateKey)}
               style={{
                 cursor: "pointer",
-                color: "#28a745",
+                color: "#1e40af",
                 fontWeight: "bold",
-                fontSize: "1.2em",
-                padding: "20px",
+                fontSize: "1.5em",
+                marginBottom: "16px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between", // Align icon-text and caret
               }}
             >
-              <span style={{ marginRight: "7px" }}>Test: </span> {dateKey}
-              <span style={{ marginLeft: "145px" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <img
+                  src="https://res.cloudinary.com/dwljkfseh/image/upload/v1733828894/10691802_ih4pqk.png"
+                  alt="Icon"
+                  style={{
+                    marginRight: "8px",
+                    width: "24px", // Slightly larger for better visibility
+                    height: "24px",
+                  }}
+                />
+                <span>{dateKey}</span>
+              </div>
+
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  transition: "transform 0.3s ease",
+                }}
+              >
                 <FontAwesomeIcon icon={faSquareCaretDown} />
               </span>
             </Text>
 
             {selectedDate === dateKey && (
-              <Box
-                className="mt-4"
-                flexDirection="column"
-                justifyContent="space-between"
-              >
+              <Box className="mt-4 space-y-4">
                 {items.map((item, index) => (
                   <Box
                     key={index}
-                    className="mb-6 p-4 rounded-md shadow-sm"
+                    className="rounded-md shadow-md p-5 bg-white"
                     style={{
-                      backgroundColor: "#e6f7ff",
-                      flex: "1 1 calc(30% - 1rem)",
-                      margin: "0.05rem",
+                      border: "1px solid #d1d5db",
+                      transition: "all 0.3s ease-in-out",
                     }}
                   >
                     <Text
                       style={{
-                        color: "#6c757d",
-                        fontSize: "1em",
-                        marginBottom: "0.7em",
+                        color: "#374151",
+                        fontSize: "1.1em",
+                        marginBottom: "12px",
                       }}
                     >
-                      Detected at{" "}
+                      Detected at:{" "}
                       {item.ngày instanceof Date
                         ? item.ngày.toLocaleString()
                         : item.ngày.toDate().toLocaleString()}
                     </Text>
 
                     <img
-                      className="w-full h-auto rounded-md shadow-md mb-3"
+                      className="w-full h-auto rounded-md shadow-md mb-4"
                       src={decodeBase64(item.hình)}
                       alt="Skincare Image"
-                      style={{ border: "2px solid #b3e5fc" }}
+                      style={{
+                        border: "3px solid #93c5fd",
+                        transition: "transform 0.3s ease-in-out",
+                      }}
+                      onMouseOver={(e) =>
+                        (e.target.style.transform = "scale(1.05)")
+                      }
+                      onMouseOut={(e) =>
+                        (e.target.style.transform = "scale(1)")
+                      }
                     />
 
                     {item.bounding.map((label, labelIndex) => (
-                      <Box key={`${index}-${labelIndex}`} className="mt-3 ">
+                      <Box
+                        key={`${index}-${labelIndex}`}
+                        className="mt-3 rounded-lg shadow-inner p-4"
+                        style={{
+                          backgroundColor: "#f3f4f6",
+                          transition: "all 0.3s ease-in-out",
+                        }}
+                      >
                         <Text
                           onClick={() => handleLabelClick(label.tên_Label)}
                           style={{
                             cursor: "pointer",
-                            color: "#28a745",
+                            color: "#1e3a8a",
                             fontWeight: "bold",
-                            fontSize: "1.1em",
-                            paddingLeft: "10px",
+                            fontSize: "1.2em",
                           }}
                         >
-                          <span style={{ marginRight: "5px" }}>
-                            <FontAwesomeIcon icon={faSquarePlus} />
-                          </span>{" "}
+                          <span style={{ marginRight: "8px" }}>➕</span>{" "}
                           {label.tên_Label}
                         </Text>
 
                         {selectedLabel === label.tên_Label && (
                           <Box
-                            className="mt-2 p-2 rounded-lg shadow-xl"
-                            style={{ backgroundColor: "#F9F9F6" }}
+                            className="mt-3 p-4 rounded-lg"
+                            style={{
+                              backgroundColor: "#e5e7eb",
+                              transition: "all 0.3s ease-in-out",
+                            }}
                           >
-                            <Text
-                              style={{ fontSize: "0.95em", color: "#343a40" }}
-                            >
+                            <Text style={{ fontSize: "1em", color: "#111827" }}>
                               Count: {label.count}
                             </Text>
-                            <Text
-                              style={{ fontSize: "0.95em", color: "#343a40" }}
-                            >
+                            <Text style={{ fontSize: "1em", color: "#111827" }}>
                               Suggestion: {label.suggestion}
                             </Text>
                           </Box>
@@ -207,7 +230,7 @@ const Records: FC = () => {
             )}
 
             <Divider
-              style={{ backgroundColor: "#dee2e6", marginTop: "1.5em" }}
+              style={{ backgroundColor: "#d1d5db", marginTop: "1.5em" }}
             />
           </Box>
         ))}
@@ -217,3 +240,4 @@ const Records: FC = () => {
 };
 
 export default Records;
+

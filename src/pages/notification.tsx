@@ -34,7 +34,7 @@ const NotificationList: FC = () => {
 const NotificationPage: FC = () => {
   return (
     <Page>
-      <Header title="Notification" showBackIcon={true} />
+      <Header title="Notification" showBackIcon={false} />
       <Divider />
       <NotificationList />
     </Page>

@@ -15,7 +15,8 @@ const Guild: FC = () => {
   const lineStyle: React.CSSProperties = {
     flexGrow: 1,
     height: "1px",
-    backgroundColor: "black",
+    width: "90%",
+    backgroundColor: "#108fea",
   };
 
   const titleStyle: React.CSSProperties = {
@@ -25,6 +26,7 @@ const Guild: FC = () => {
     fontFamily: "'Roboto', sans-serif",
     fontWeight: "bold",
     textAlign: "center",
+    color: "#108fea",
   };
 
   const steps = [
@@ -73,30 +75,16 @@ const Guild: FC = () => {
           backgroundSize: "cover",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-            backgroundImage:
-              "url('https://res.cloudinary.com/dwljkfseh/image/upload/v1730746393/b96c5fb7277897daa937b840a4aaa45d_ti2q1p.jpg')",
-            backgroundSize: "100% 190%",
-            padding: "3%",
-          }}
-        >
-          <Text
-            style={{
-              fontSize: "28px",
-              fontWeight: "bold",
-              fontFamily: "'Roboto', sans-serif",
-              width: "65%",
-              padding: "4%",
-              borderRadius: "50px",
-            }}
+        <div className="flex justify-center bg-white pt-2">
+          <div
+            className="relative text-center py-4 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 rounded-lg shadow-lg mb-5"
+            style={{ width: "96%" }}
           >
-            User Guide
-          </Text>
+            <h1 className="text-3xl font-extrabold text-white tracking-wide uppercase">
+              <span className="drop-shadow-lg">User Guide</span>
+            </h1>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-3/4 bg-white rounded-full opacity-30"></div>
+          </div>
         </div>
 
         {steps.map((step, index) => (

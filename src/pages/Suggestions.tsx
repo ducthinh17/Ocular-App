@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { userState } from "../state";
 import { useLocation } from "react-router-dom";
 import {
   List,
@@ -126,6 +128,7 @@ const Suggestions: React.FunctionComponent = () => {
   const [shouldUpload, setShouldUpload] = useState(false);
   const [outputImage, setOutputImage] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(true);
+  const userInfo = useRecoilValue(userState);
 
   useEffect(() => {
     if (shouldUpload) {
@@ -182,7 +185,7 @@ const Suggestions: React.FunctionComponent = () => {
   };
 
   const handleClickSave = () => {
-    saveData().then(() => {
+    saveData(userInfo).then(() => {
       navigate("/Calendar");
     });
   };
@@ -190,6 +193,7 @@ const Suggestions: React.FunctionComponent = () => {
   return (
     <Page>
       <Header
+        className="bg-gradient-to-r from-[rgb(37,216,243)] to-[hsl(177,92%,53%)] app-header no-border pl-4 flex-none pb-[6px]"
         title={
           (
             <Text.Title size="normal" className="text-white !font-medium">
@@ -220,7 +224,7 @@ const Suggestions: React.FunctionComponent = () => {
               getSkincareIngredients(object);
             return (
               <List.Item
-                className="!mb-[15px] !m-[10px] bg-amber-100 p-4 rounded-lg shadow-md"
+                className="!mb-[15px] !m-[10px] bg-white p-4 rounded-lg shadow-md"
                 key={index}
               >
                 <div className="suggestions-container">

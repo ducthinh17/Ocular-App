@@ -1,9 +1,14 @@
 import React, { FC, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Card, Button, Typography, Space, Result } from "antd";
-import { Box, Header, Page } from "zmp-ui";
+import { Box, Header, Page, useNavigate } from "zmp-ui";
 import { Divider } from "../components/divider";
-import "./Survey.css";
+import style from "../css/app.scss";
+import { checkUserIDExists, pushSurveyData } from "../database/insert";
+import { useRecoilValue } from "recoil";
+
+import { userState } from "../state";
+
 
 const { Title } = Typography;
 
@@ -30,17 +35,25 @@ type FormData = {
 };
 
 const Survey: FC = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+  const userInfo = useRecoilValue(userState);
+
 
   const [step, setStep] = useState<number>(0);
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
+  const [surveyData, setSurveyData] = useState<FormData>({}); // New state to store form data progressively
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    // Add the current step's answer to surveyData
+    setSurveyData((prevData) => ({
+      ...prevData,
+      [questions[step].name]: Object.values(data)[0],
+    }));
 
     if (step < questions.length - 1) {
       setStep(step + 1);
@@ -52,6 +65,16 @@ const Survey: FC = () => {
   const handlePrev = () => {
     if (step > 0) {
       setStep(step - 1);
+    }
+  };
+
+  const handleSurveySubmit = async () => {
+
+    try {
+      await pushSurveyData(userInfo.id, surveyData);
+      navigate("/index"); // Optionally navigate to a different page after submission
+    } catch (error) {
+      console.error("Error submitting survey data:", error);
     }
   };
 
@@ -81,8 +104,7 @@ const Survey: FC = () => {
       ],
     },
     {
-      title:
-        "Is there a history of allergic reactions or irritation to topical medications?",
+      title: "Is there a history of allergic reactions or irritation to topical medications?",
       name: "allergyHistory",
       options: [
         { label: "Yes", value: "yes" },
@@ -98,8 +120,7 @@ const Survey: FC = () => {
       ],
     },
     {
-      title:
-        "Is your acne concentrated in specific areas such as under the jaw?",
+      title: "Is your acne concentrated in specific areas such as under the jaw?",
       name: "localizedAcne",
       options: [
         { label: "Yes", value: "yes" },
@@ -124,7 +145,6 @@ const Survey: FC = () => {
     },
   ];
 
-  // image number
   const images: string[] = [
     "https://res.cloudinary.com/dwljkfseh/image/upload/v1727972240/number1_npzqsh.png",
     "https://res.cloudinary.com/dwljkfseh/image/upload/v1727972240/number2_rctnxf.png",
@@ -141,7 +161,7 @@ const Survey: FC = () => {
 
   return (
     <Page>
-      <Header title="Acne Treatment Survey" showBackIcon={true} />
+      <Header title="Acne Treatment Survey" showBackIcon={false} />
       <div
         style={{
           objectFit: "cover",
@@ -241,7 +261,7 @@ const Survey: FC = () => {
                         transition: "background-color 0.3s",
                         backgroundColor:
                           errors[questions[step].name]?.type === "required" &&
-                          errors[questions[step].name].message
+                            errors[questions[step].name].message
                             ? "#ffcccc"
                             : "#ffffff",
                       }}
@@ -277,11 +297,16 @@ const Survey: FC = () => {
             status="success"
             title="Congratulations on completing the survey!"
             subTitle="Thank you for participating."
+            extra={
+              <Button type="primary" onClick={handleSurveySubmit}>
+                Start
+              </Button>
+
+            }
           />
         )}
       </div>
     </Page>
   );
 };
-
 export default Survey;

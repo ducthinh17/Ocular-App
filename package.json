@@ -22,8 +22,9 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-regular-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/icons-material": "^6.1.1",
     "@mui/lab": "^6.0.0-beta.10",
@@ -51,14 +52,13 @@
     "request": "^2.88.2",
     "swiper": "^9.1.0",
     "zmp-sdk": "^2.39.0",
-    "zmp-ui": "^1.6.0-rc.6",
-    "zmp-vite-plugin": "^1.1.4"
+    "zmp-ui": "^1.6.0-rc.6"
   },
   "devDependencies": {
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.13",
     "cross-env": "^7.0.3",
     "postcss": "^8.4.21",
@@ -67,7 +67,8 @@
     "postcss-preset-env": "^6.7.0",
     "sass": "^1.58.3",
     "tailwindcss": "^3.2.7",
-    "vite": "^5.4.8",
-    "vite-tsconfig-paths": "^4.0.5"
+    "vite": "^5.4.11",
+    "vite-tsconfig-paths": "^5.1.4",
+    "zmp-vite-plugin": "^1.1.4"
   }
 }

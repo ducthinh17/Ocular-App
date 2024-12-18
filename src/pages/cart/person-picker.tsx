@@ -11,12 +11,7 @@ export const PersonPicker: FC = () => {
     return <RequestPersonPickerPhone />;
   }
 
-  return (
-    <ListItem
-      title={`${user.name}-${user.id} - ${phone}`}
-      subtitle="Receiver"
-    />
-  );
+  return <ListItem title={`${user.name} - ${phone}`} subtitle="Receiver" />;
 };
 
 export const RequestPersonPickerPhone: FC = () => {

@@ -32,7 +32,7 @@ const Personal: FC = () => {
   const navigate = useNavigate();
 
   const handleAccountClick = () => {
-    navigate("/account-details"); // Navigate to AccountDetails page
+    navigate("/AccountDetails"); // Navigate to AccountDetails page
   };
 
   const handleHistoryClick = () => {

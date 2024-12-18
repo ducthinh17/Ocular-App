@@ -9,7 +9,7 @@ import {
 import { chooseImage } from "zmp-sdk";
 import axios from "axios";
 import logo from "../static/logo.png";
-
+import { DownOutlined, RightOutlined } from "@ant-design/icons";
 // Define the BoundingBox interface
 interface BoundingBox {
   class_id: string;
@@ -66,6 +66,28 @@ export const handleUpload = async (
   }
 };
 
+const groupBoundingBoxes = (boundingBoxes: BoundingBox[]) => {
+  const groupedData: Record<string, { count: number; averageConf: number }> =
+    {};
+
+  boundingBoxes.forEach((box) => {
+    const confidence = parseFloat(box.percentage_conf);
+
+    if (!groupedData[box.class_id]) {
+      groupedData[box.class_id] = { count: 0, averageConf: 0 };
+    }
+
+    groupedData[box.class_id].count++;
+    groupedData[box.class_id].averageConf += confidence;
+  });
+
+  Object.keys(groupedData).forEach((key) => {
+    groupedData[key].averageConf /= groupedData[key].count;
+  });
+
+  return groupedData;
+};
+
 const ResultMedical: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,6 +100,14 @@ const ResultMedical: React.FC = () => {
   const [outputImage, setOutputImage] = useState<string>("");
   const [shouldUpload, setShouldUpload] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [openStates, setOpenStates] = useState<Record<string, boolean>>({});
+
+  const toggleOpenState = (class_id: string) => {
+    setOpenStates((prevState) => ({
+      ...prevState,
+      [class_id]: !prevState[class_id],
+    }));
+  };
 
   useEffect(() => {
     if (result) {
@@ -128,6 +158,21 @@ const ResultMedical: React.FC = () => {
     const classes = new Set(boundingBoxes.map((box) => box.class_id));
     navigate("/Suggestions", { state: Array.from(classes) });
   };
+  const findLargestAcneType = (
+    groupedData: Record<string, { count: number; averageConf: number }>
+  ) => {
+    let maxType = "";
+    let maxCount = 0;
+
+    for (const [class_id, { count }] of Object.entries(groupedData)) {
+      if (count > maxCount) {
+        maxCount = count;
+        maxType = class_id;
+      }
+    }
+
+    return { maxType, maxCount };
+  };
 
   const displayInformation = () => {
     if (boundingBoxes.length === 0 && message) {
@@ -140,28 +185,96 @@ const ResultMedical: React.FC = () => {
       );
     }
 
+    const groupedData = groupBoundingBoxes(boundingBoxes);
+    const { maxType, maxCount } = findLargestAcneType(groupedData);
+
     return (
-      <List>
-        {boundingBoxes.map((box, index) => (
-          <List.Item
-            className="!mt-[15px] bg-amber-100 p-4 rounded-lg shadow-md"
-            key={index}
-          >
-            <div>
-              <Text className="information-text  mb-[4px] text-gray-700">
-                Type:{" "}
-                <span className="font-bold text-blue-600">{box.class_id}</span>
-              </Text>
-              <Text className="information-text mb-[4px] text-gray-700">
-                Confidence:{" "}
-                <span className="font-bold text-orange-600">
-                  {box.percentage_conf}%
-                </span>
-              </Text>
-            </div>
-          </List.Item>
-        ))}
-      </List>
+      <div>
+        {maxType && (
+          <div className="relative mx-auto w-full max-w-lg text-center">
+            <p
+              className=" text-xl text-gray-600"
+              style={{ fontFamily: "'Times New Roman', serif" }}
+            >
+              Based on your image, the most common acne type is:{" "}
+              <span
+                className="text-3xl font-bold text-blue-700"
+                style={{ fontFamily: "'Times New Roman', serif" }}
+              >
+                {maxType}
+              </span>
+            </p>
+
+            <p
+              className="mt-2 text-lg text-gray-500"
+              style={{ fontFamily: "'Times New Roman', serif" }}
+            >
+              With a total count of:{" "}
+              <span
+                className="text-2xl font-bold text-green-600"
+                style={{ fontFamily: "'Times New Roman', serif" }}
+              >
+                {maxCount}
+              </span>
+            </p>
+          </div>
+        )}
+
+        <div>
+          <List>
+            {Object.entries(groupedData).map(
+              ([class_id, { count, averageConf }]) => {
+                const isOpen = openStates[class_id];
+                return (
+                  <List.Item
+                    className="!mt-[15px] bg-white p-4 rounded-lg shadow-md"
+                    key={class_id}
+                  >
+                    <div
+                      className="flex items-center justify-between cursor-pointer"
+                      onClick={() => toggleOpenState(class_id)}
+                    >
+                      <div className="text-gray-800 font-bold text-md">
+                        {isOpen ? (
+                          <DownOutlined className="mr-2 text-blue-500" />
+                        ) : (
+                          <RightOutlined className="mr-2 text-blue-500" />
+                        )}
+                        {class_id}
+                      </div>
+                      <div className="text-gray-500 text-sm">
+                        {isOpen ? "Hide Details" : "Show Details"}
+                      </div>
+                    </div>
+                    {isOpen && (
+                      <div className="mt-4 border-t pt-4">
+                        <Text className="information-text mb-[4px] text-gray-700">
+                          Type:{" "}
+                          <span className="font-bold text-blue-600">
+                            {class_id}
+                          </span>
+                        </Text>
+                        <Text className="information-text mb-[4px] text-gray-700">
+                          Total Count:{" "}
+                          <span className="font-bold text-green-600">
+                            {count}
+                          </span>
+                        </Text>
+                        <Text className="information-text mb-[4px] text-gray-700">
+                          Average Confidence:{" "}
+                          <span className="font-bold text-orange-600">
+                            {averageConf.toFixed(2)}%
+                          </span>
+                        </Text>
+                      </div>
+                    )}
+                  </List.Item>
+                );
+              }
+            )}
+          </List>
+        </div>
+      </div>
     );
   };
 
@@ -177,8 +290,19 @@ const ResultMedical: React.FC = () => {
         }
         showBackIcon={true}
         backIcon={<Icon icon="zi-arrow-left" className="text-white" />}
-        backgroundColor="#FF5F8F"
+        backgroundColor="#4455F2"
       />
+      <div className="relative mx-auto w-full max-w-lg text-center pt-6 px-4">
+        <div>
+          <h2
+            className="text-3xl font-bold text-gray-800 tracking-wide"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Acne Analysis Result
+          </h2>
+        </div>
+      </div>
+
       <div className="info-container p-4">
         {img && (
           <img
@@ -187,15 +311,15 @@ const ResultMedical: React.FC = () => {
             alt="Processed Output"
           />
         )}
-        <Text className="mb-[5px] mt-[20px] text-lg font-bold underline">
-          &#10020; Acne Identification List:
-        </Text>
+        <br />
+
         {displayInformation()}
         {loading && (
           <div className="flex justify-center items-center h-screen">
             <Spinner visible logo={logo} />
           </div>
         )}
+
         <div className="button-container flex justify-center mt-4 space-x-4">
           <Button
             className="flex-1 shadow-lg transition-transform transform hover:scale-105 hover:bg-primary-dark"

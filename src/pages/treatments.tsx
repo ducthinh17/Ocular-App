@@ -76,19 +76,17 @@ const Treatments: FC = () => {
             style={{ width: "68%", height: "auto" }}
           />
         </Box>
-
+        <div
+          className="relative flex justify-center items-center text-center py-6 bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 rounded-lg shadow-2xl mb-6"
+          style={{ width: "98%", height: "auto", margin: "0 auto" }}
+        >
+          <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase">
+            <span className="drop-shadow-lg">Doctors Available</span>
+          </h1>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1.5 w-3/4 bg-white rounded-full opacity-40"></div>
+        </div>
+        <br />
         <Box>
-          <Text
-            style={{
-              padding: "25px",
-              fontSize: "24px",
-              fontWeight: "bold",
-              paddingBottom: "35px",
-            }}
-          >
-            &#10020; Doctors Available
-          </Text>
-
           {/* Grid layout for Doctors */}
           <Box
             style={{

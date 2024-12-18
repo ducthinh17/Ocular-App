@@ -1,23 +1,23 @@
 [
   {
-    "id": "coffee",
-    "name": "Statistics",
-    "icon": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481118/report_pljl2c.png"
+    "id": "Combo",
+    "name": "Combo"
   },
   {
-    "id": "calendar",
-    "name": "Calendar",
-    "icon": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481115/calendar2_xmamut.png"
+    "id": "Facial Cleanser",
+    "name": "Facial Cleanser"
   },
   {
-    "id": "treatment",
-    "name": "Treatment",
-    "icon": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481115/doctors_ctjwr9.png"
+    "id": "Cleansing water",
+    "name": "Cleansing water"
   },
   {
-    "id": "survey",
-    "name": "Survey",
-    "icon": "https://res.cloudinary.com/dwljkfseh/image/upload/v1724481117/medical_report_huutfa.png"
+    "id": "Sunscreen",
+    "name": "Sunscreen"
+  },
+  {
+    "id": "Serum",
+    "name": "Serum"
   }
  
   

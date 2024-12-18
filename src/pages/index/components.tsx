@@ -15,6 +15,7 @@ export const Components: FC = () => {
           backgroundColor: "#F5F5F5",
           borderRadius: "25%",
           padding: "10px",
+          boxShadow: "4px 7px 7px rgba(0, 0, 0, 0.15)",
         }}
       >
         <img
@@ -34,6 +35,7 @@ export const Components: FC = () => {
           backgroundColor: "#F5F5F5",
           borderRadius: "25%",
           padding: "10px",
+          boxShadow: "4px 7px 7px rgba(0, 0, 0, 0.15)",
         }}
       >
         <img
@@ -53,6 +55,7 @@ export const Components: FC = () => {
           backgroundColor: "#F5F5F5",
           borderRadius: "25%",
           padding: "10px",
+          boxShadow: "4px 7px 7px rgba(0, 0, 0, 0.15)",
         }}
       >
         <img
@@ -66,12 +69,13 @@ export const Components: FC = () => {
         </Text>
       </div>
       <div
-        onClick={() => navigate("/survey")}
+        onClick={() => navigate("/Survey")}
         className="flex flex-col space-y-2 items-center"
         style={{
           backgroundColor: "#F5F5F5",
           borderRadius: "25%",
           padding: "10px",
+          boxShadow: "4px 7px 7px rgba(0, 0, 0, 0.15)",
         }}
       >
         <img

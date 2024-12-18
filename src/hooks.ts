@@ -67,6 +67,6 @@ export function useToBeImplemented() {
   return () =>
     snackbar.openSnackbar({
       type: "success",
-      text: "Functions for the development of legal parties...",
+      text: "Chức năng dành cho các bên tích hợp phát triển...",
     });
 }

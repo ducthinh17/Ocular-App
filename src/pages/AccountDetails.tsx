@@ -10,20 +10,22 @@ import {
   Spinner,
   Icon,
 } from "zmp-ui";
-import { userState } from "../../src/state";
-import { useRecoilValueLoadable } from "recoil";
+import { userState, phoneState, phoneNumber } from "../../src/state";
+import { useRecoilValueLoadable, useRecoilValue } from "recoil";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
+import { pushAccountInfo } from "../database/insert";
 const AccountDetails: FC = () => {
   const userLoadable = useRecoilValueLoadable(userState);
+  const userInfo = useRecoilValue(userState);
+  const phoneNum = phoneNumber;
 
-  // Mock data for demonstration (replace with actual data fetching)
   const initialAccountInfo = {
-    fullname: "AIoT Lab VN",
-    id: "123456",
+    fullname: userInfo.name,
+    id: userInfo.id,
     dob: "January 1, 2002",
     email: "aiot-lab-vn@example.com",
-    phone: "+84 (234) 567-890",
+    phone: phoneNum,
     avatarUrl:
       "https://res.cloudinary.com/dwljkfseh/image/upload/v1733160472/doctur_rbel2q.png",
   };
@@ -39,6 +41,18 @@ const AccountDetails: FC = () => {
   const handleSaveAvatar = () => {
     console.log("Updated avatar:", accountInfo.avatarUrl);
     setIsEditingAvatar(false);
+  };
+
+  const handlePushData = () => {
+    try {
+      handleSaveAvatar();
+
+      handleSaveInfo();
+
+      pushAccountInfo(userInfo.id, initialAccountInfo);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleSaveInfo = () => {
@@ -133,7 +147,7 @@ const AccountDetails: FC = () => {
                 >
                   Cancel
                 </Button>
-                <Button onClick={handleSaveAvatar} className="!bg-indigo-500">
+                <Button onClick={handlePushData} className="!bg-indigo-500">
                   Save
                 </Button>
               </Box>
@@ -205,7 +219,7 @@ const AccountDetails: FC = () => {
                   >
                     Cancel
                   </Button>
-                  <Button onClick={handleSaveInfo} className="!bg-indigo-500">
+                  <Button onClick={handleSaveAvatar} className="!bg-indigo-500">
                     Save
                   </Button>
                 </>

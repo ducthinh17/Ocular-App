@@ -105,20 +105,21 @@ const CameraContent = () => {
     >
       {/* New Image and Subtitle */}
       <img
-        src="https://res.cloudinary.com/dwljkfseh/image/upload/v1732031650/mirrorr_ncvj7k.png"
+        src="https://res.cloudinary.com/dwljkfseh/image/upload/v1733744746/causes2_nb5vyz.png"
         alt="Centered Image"
         style={{
-          width: "60%",
+          width: "70%",
           objectFit: "cover",
           marginBottom: "20px",
+          borderRadius: "7%",
         }}
       />
       <div
         style={{
-          backgroundColor: "#F5DEB3", // màu vàng nâu nhạt
+          backgroundColor: "#FFFFFF",
           padding: "3%",
           borderRadius: "8px",
-          display: "inherit",
+          display: "contents",
           width: "95%",
         }}
       >
@@ -127,8 +128,9 @@ const CameraContent = () => {
             fontFamily: "'Roboto', sans-serif",
             fontSize: "20px",
             fontWeight: "bold",
-            color: "#2E2E2E",
+            color: "#4E2E2F",
             letterSpacing: "0.5px",
+            width: "65%",
             textAlign: "center",
           }}
         >
@@ -259,33 +261,20 @@ const CameraContent = () => {
 const HomePage: React.FunctionComponent = () => {
   return (
     <Page>
-      <Header title="Camera" showBackIcon={true} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          backgroundImage:
-            "url('https://res.cloudinary.com/dwljkfseh/image/upload/v1730746393/b96c5fb7277897daa937b840a4aaa45d_ti2q1p.jpg')",
-          backgroundSize: "100% 190%",
-          padding: "3%",
-        }}
-      >
-        <Text
-          style={{
-            fontSize: "28px",
-            fontWeight: "bold",
-            fontFamily: "'Roboto', sans-serif",
-            width: "65%",
-            padding: "4%",
-            borderRadius: "50px",
-          }}
-        >
-          Camera
-        </Text>
+      <div>
+        <Header title="Camera" showBackIcon={true} />
+        <div className="flex justify-center bg-white pt-2">
+          <div
+            className="relative text-center py-4 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 rounded-lg shadow-lg mb-5"
+            style={{ width: "96%" }}
+          >
+            <h1 className="text-3xl font-extrabold text-white tracking-wide uppercase">
+              <span className="drop-shadow-lg">Camera</span>
+            </h1>
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-3/4 bg-white rounded-full opacity-30"></div>
+          </div>
+        </div>
       </div>
-
       <CameraContent />
     </Page>
   );

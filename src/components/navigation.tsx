@@ -6,12 +6,12 @@ import { BottomNavigation, Icon } from "zmp-ui";
 import { CartIcon } from "./cart-icon";
 
 const tabs: Record<string, MenuItem> = {
-  "/": {
+  "/index": {
     label: "Home",
     icon: <Icon icon="zi-home" />,
   },
 
-  "/Records": {
+  "/history": {
     label: "History",
     icon: <Icon icon="zi-calendar" />,
   },

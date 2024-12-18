@@ -13,12 +13,12 @@ const CalendarComponent: FC = () => {
     setDate(newDate);
     selectedDateGlobal = newDate;
 
-    navigate("/history");
+    navigate("/calendarDate");
   };
 
   return (
     <Page>
-      <Header title="Diary" />
+      <Header title="Calendar" />
       <Box
         style={{
           backgroundImage:
@@ -28,22 +28,20 @@ const CalendarComponent: FC = () => {
           padding: "8px",
         }}
       >
-        <Text
-          style={{
-            padding: "10px",
-            fontSize: "24px",
-            fontWeight: "bold",
-            paddingBottom: "35px",
-          }}
-        >
-          Diary
-        </Text>
+        <div className="relative text-center py-6 bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 rounded-lg shadow-2xl mb-6">
+          <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase">
+            <span className="drop-shadow-lg">Calendar</span>
+          </h1>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-3/4 bg-white rounded-full opacity-40"></div>
+        </div>
 
         <div
           style={{
             padding: "10px",
             marginBottom: "20px",
-            justifyItems: "center",
+            display: "flex", // Sử dụng Flexbox
+            justifyContent: "center", // Căn giữa theo chiều ngang
+            alignItems: "center", // Căn giữa theo chiều dọc (nếu cần)
           }}
         >
           <Calendar onChange={handleDateChange} value={date} />

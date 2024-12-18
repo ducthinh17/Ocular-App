@@ -1,4 +1,4 @@
-import { atom, selector, selectorFamily } from "recoil";
+import { atom, selector, selectorFamily, useRecoilSnapshot } from "recoil";
 import { getLocation, getPhoneNumber, getUserInfo } from "zmp-sdk";
 import logo from "./static/logo.png";
 import { Category } from "./types/category";
@@ -28,13 +28,36 @@ export const userState = selector({
   },
 });
 
+export let userId = "";
+
+export let phoneNumber = "";
+
+//
+
+export function UserIdUpdater() {
+  const snapshot = useRecoilSnapshot();
+
+  // Cập nhật `userId` từ giá trị của `userState`
+  const userInfo = snapshot.getLoadable(userState).contents;
+  if (userInfo && userInfo.id) {
+    userId = userInfo.id;
+  }
+
+  const phone = snapshot.getLoadable(phoneState).contents;
+  if (typeof phone === "string") {
+    phoneNumber = phone;
+  }
+
+  return null;
+}
+
 export const categoriesState = selector<Category[]>({
   key: "categories",
   get: () => categories,
 });
 
 export const categoriesState_Components = selector<Category_Components[]>({
-  key: "categories",
+  key: "categories_components",
   get: () => categories,
 });
 
@@ -183,8 +206,8 @@ export const storesState = atom<Store[]>({
     },
     {
       id: 5,
-      name: "International University",
-      address: "Khu phố 6, Phường Linh Trung, TP. Thủ Đức, Thành phố Hồ Chí Minh",
+      name: "Củ Chi Tunnels",
+      address: "Phú Hiệp, Củ Chi, Thành phố Hồ Chí Minh, Việt Nam",
       lat: 11.051655,
       long: 106.494249,
     },

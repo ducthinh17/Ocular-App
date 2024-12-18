@@ -1,8 +1,7 @@
+// fetchData.ts
+
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore"
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { decodeBase64 } from "../pages/Result_medical";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDz8sjOP6FWU5CghOimZnLryKWMwqcGhGo",
@@ -17,20 +16,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-interface SkincareData {
-  tele: string;
-  ngày: {
-    ngày: Date | any;
-    hình: string;
-    bounding: Label[];
-  }[];
-}
+export const fetchData = async () => {
+  const querySnapshot = await getDocs(collection(db, "skincareData"));
+  const docsData = querySnapshot.docs.map((doc) => doc.data());
 
-interface Label {
-  tên_Label: string;
-  count: number;
-  suggestion: string;
-}
+  const sortedData = docsData
+    .flatMap((entry) =>
+      entry.ngày.map((item) => ({
+        ...item,
+        ngày: item.ngày instanceof Date ? item.ngày : item.ngày.toDate(),
+      }))
+    )
+    .sort((a, b) => a.ngày.getTime() - b.ngày.getTime());
 
+  const groupedData = sortedData.reduce((acc, item) => {
+    const dateKey = item.ngày.toLocaleDateString();
+    if (!acc.has(dateKey)) {
+      acc.set(dateKey, []);
+    }
+    acc.get(dateKey)!.push(item);
+    return acc;
+  }, new Map<string, any[]>());
 
-
+  return groupedData;
+};

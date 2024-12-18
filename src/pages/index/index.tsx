@@ -22,7 +22,6 @@ const HomePage: React.FunctionComponent = () => {
         </Suspense>
         <Banner />
         <Divider />
-
         <News />
         <Divider />
         <ProductList />
