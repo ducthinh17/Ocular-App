@@ -47,7 +47,7 @@ export function calcFinalPrice(product: Product, options?: SelectedOptions) {
 }
 
 export function getDummyImage(filename: string) {
-  return `https://res.cloudinary.com/dwljkfseh/image/upload/v1724481113/${filename}`;
+  return `https://res.cloudinary.com/dwljkfseh/image/upload/${filename}`;
 }
 
 export function isIdentical(
@@ -64,12 +64,11 @@ export function isIdentical(
   for (const key of option1Keys) {
     const option1Value = option1[key];
     const option2Value = option2[key];
-
     const areEqual =
       Array.isArray(option1Value) &&
       Array.isArray(option2Value) &&
       [...option1Value].sort().toString() ===
-        [...option2Value].sort().toString();
+      [...option2Value].sort().toString();
 
     if (option1Value !== option2Value && !areEqual) {
       return false;

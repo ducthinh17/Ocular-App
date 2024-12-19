@@ -18,13 +18,7 @@ const tabs: Record<string, MenuItem> = {
 
   "/camera": {
     label: "Camera",
-    icon: (
-      <img
-        src="https://res.cloudinary.com/dwljkfseh/image/upload/v1724481103/scan_nddrv0.png"
-        alt="Camera"
-        style={{ width: 30, height: 30 }}
-      />
-    ),
+    icon: <Icon icon="zi-photo-search" />,
   },
 
   "/cart": {

@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "AIoT Health",
+    "title": "DoctorAI",
     "headerColor": "",
     "textColor": "black",
     "statusBarColor": "#ffffff",
@@ -8,8 +8,9 @@
     "statusBar": "transparent",
     "selfControlLoading": false,
     "hideAndroidBottomNavigationBar": false,
-    "hideIOSSafeAreaBottom": false,
-    "actionBarHidden": true
+    "hideIOSSafeAreaBottom": true,
+    "actionBarHidden": true,
+    "textAlign": "left"
   },
   "debug": false,
   "listCSS": [],
@@ -26,6 +27,6 @@
     "primaryColor": "#006af5",
     "prefixCurrencySymbol": false,
     "currencySymbol": "đ",
-    "headerLogo": ""
+    "headerLogo": "https://res.cloudinary.com/dwljkfseh/image/upload/v1734593514/logo_1_tgqkdm.png"
   }
 }

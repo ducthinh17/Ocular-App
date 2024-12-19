@@ -105,7 +105,7 @@ const CameraContent = () => {
     >
       {/* New Image and Subtitle */}
       <img
-        src="https://res.cloudinary.com/dwljkfseh/image/upload/v1733744746/causes2_nb5vyz.png"
+        src="https://res.cloudinary.com/dwljkfseh/image/upload/v1734595929/image_detect_vxrdwr.webp"
         alt="Centered Image"
         style={{
           width: "70%",
@@ -130,11 +130,11 @@ const CameraContent = () => {
             fontWeight: "bold",
             color: "#4E2E2F",
             letterSpacing: "0.5px",
-            width: "65%",
+            width: "72%",
             textAlign: "center",
           }}
         >
-          Take a picture of how you look today!
+          Upload your fundus image for a diagnosis!
         </p>
       </div>
       <br />
@@ -158,8 +158,8 @@ const CameraContent = () => {
         }}
       >
         <img
-          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1730650194/5071156_ww7gou.png"
-          alt="Take a new picture"
+          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1734593533/1611386_yukupt.png"
+          alt="Upload a new Fundus"
           style={{
             width: "66px",
             height: "66px",
@@ -175,7 +175,7 @@ const CameraContent = () => {
             color: "#FFFFFF",
           }}
         >
-          Take a new picture
+          Upload a New Fundus
         </p>
         <Icon icon="zi-chevron-right" />
       </button>
@@ -198,7 +198,7 @@ const CameraContent = () => {
         }}
       >
         <img
-          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1730650408/3476744_s9apiv.png"
+          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1734596708/17085103_xtqyg1.png"
           alt="Test image"
           style={{
             width: "66px",
@@ -213,7 +213,7 @@ const CameraContent = () => {
             color: "#FFFFFF",
           }}
         >
-          Test Image for Diagnosis
+          Test a ready Fundus
         </p>
         <Icon icon="zi-chevron-right" />
       </button>
@@ -235,7 +235,7 @@ const CameraContent = () => {
         }}
       >
         <img
-          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1730651555/4961736_zca8t0.png"
+          src="https://res.cloudinary.com/dwljkfseh/image/upload/v1734593533/help-desk_qfguiz.png"
           alt="Guide"
           style={{
             width: "66px",

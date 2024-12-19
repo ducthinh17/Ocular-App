@@ -15,15 +15,20 @@ export const Welcome: FC = () => {
       showBackIcon={false}
       title={
         (
-          <Box flex alignItems="center" className="space-x-2">
-            <img
-              className="w-8 h-8 rounded-lg border-inset"
-              src={getConfig((c) => c.template.headerLogo) || logo}
-            />
-            <Box>
-              <Text.Title size="small">{appConfig.app.title}</Text.Title>
+          <Box flex alignItems="center" className="w-full">
+            {/* Left: Logo */}
+            <Box className="flex items-center">
+              <img
+                className="w-17 h-10 mr-1"
+                src={getConfig((c) => c.template.headerLogo) || logo}
+                alt="Logo"
+              />
+            </Box>
+            {/* Right: User Info */}
+
+            <Box className="flex items-center">
               {user.state === "hasValue" ? (
-                <Text size="xxSmall" className="text-[rgb(97,101,102)]">
+                <Text size="xxSmall" className="text-[rgb(97,101,102)] mt-3">
                   Welcome, {user.contents.name}!
                 </Text>
               ) : (
@@ -34,5 +39,7 @@ export const Welcome: FC = () => {
         ) as unknown as string
       }
     />
+
+
   );
 };
