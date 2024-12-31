@@ -31,6 +31,7 @@
     "@mui/material": "^6.1.1",
     "@mui/x-charts": "^7.18.0",
     "@react-spring/web": "^9.6.1",
+    "@tensorflow/tfjs": "^4.22.0",
     "@types/lodash": "^4.14.191",
     "antd": "^5.21.2",
     "axios": "^1.7.7",
@@ -70,5 +71,7 @@
     "vite": "^5.4.11",
     "vite-tsconfig-paths": "^5.1.4",
     "zmp-vite-plugin": "^1.1.4"
-  }
+  },
+  "proxy": "https://ocular-diseas-model.up.railway.app"
+
 }

@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Box, Button, Header, Page, Text, Spinner, Icon } from "zmp-ui";
 import { chooseImage } from "zmp-sdk";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowUpFromBracket,
-  faImage,
-  faLightbulb,
-} from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// The content of the homepage, including the buttons for interaction.
 const CameraContent = () => {
   const [imageUri, setImageUri] = useState("");
   const [loading, setLoading] = useState(false);
   const [shouldUpload, setShouldUpload] = useState(false);
   const [file, setFile] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,15 +24,14 @@ const CameraContent = () => {
 
   const loadDefaultImage = async () => {
     try {
-      const imageUrl =
-        "https://raw.githubusercontent.com/JavaKhangNguyen/Acnes-Detection/main/test/test2.jpg";
+      const imageUrl = "https://raw.githubusercontent.com/JavaKhangNguyen/Acnes-Detection/main/test/test2.jpg";
       const response = await fetch(imageUrl);
       const blob = await response.blob();
       const objectURL = URL.createObjectURL(blob);
       setFile(objectURL);
       setImageUri(objectURL);
     } catch (error) {
-      console.log(error);
+      console.error("Error loading default image:", error);
     }
   };
 
@@ -56,40 +48,45 @@ const CameraContent = () => {
       setImageUri(objectURL);
       setShouldUpload(true);
     } catch (error) {
-      console.log(error);
+      console.error("Error choosing image:", error);
     }
   };
 
   const handleUpload = async () => {
     try {
       setLoading(true);
-
-      const blob = await (await fetch(imageUri)).blob();
+      setError("");
+  
       const formData = new FormData();
-      formData.append("image", blob);
-
-      const response = await axios.post(
-        "https://acne10.aiotlab.io.vn/upload_image",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      setLoading(false);
-      setShouldUpload(false);
-      navigate("/result_medical", { state: { result: response.data } });
+      const fileBlob = await (await fetch(imageUri)).blob();
+      formData.append("file", fileBlob, "image.jpg");
+  
+      // Gọi API thông qua proxy (sẽ tự động chuyển hướng yêu cầu tới https://ocular-diseas-model.up.railway.app)
+      const response = await fetch("https://ocular-diseas-model.up.railway.app/predict", { // Không cần phải chỉ định địa chỉ đầy đủ
+        method: "POST",
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to upload the image.");
+      }
+  
+      const result = await response.json();
+      console.log("Response:", result);
+  
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error("Upload error:", error);
+      setError("Upload failed. Please try again.");
+    } finally {
       setLoading(false);
       setShouldUpload(false);
     }
   };
-
+  
   const tryFeature = () => {
     navigate("/guild");
   };
+
   return (
     <Box
       className="bg-background"
