@@ -7,6 +7,8 @@ import CategoryPage from "../pages/category";
 import CartPage from "../pages/cart";
 import NotificationPage from "../pages/notification";
 import CameraPage from "../pages/camera";
+import UploadFundus from "../pages/UploadFundus";
+
 import Result_medical from "../pages/Result_medical";
 import Treatments from "../pages/treatments";
 import Suggestions from "../pages/Suggestions";
@@ -20,7 +22,7 @@ import SurveyPage from "../pages/Survey";
 
 import ProfilePage from "../pages/AccountDetails";
 import SearchPage from "../pages/search";
-import CheckoutResultPage from "../pages/result";
+import CheckoutResultPage from "../pages/Result";
 import { getSystemInfo } from "zmp-sdk";
 import { ScrollRestoration } from "./scroll-restoration";
 import { useHandlePayment } from "../hooks";
@@ -62,6 +64,7 @@ export const Layout: FC = () => {
           <Route path="/category" element={<CategoryPage />}></Route>
           <Route path="/notification" element={<NotificationPage />}></Route>
           <Route path="/camera" element={<CameraPage />}></Route>
+          <Route path="/upload" element={<UploadFundus />}></Route>
           <Route path="/Result_medical" element={<Result_medical />}></Route>
           <Route
             path="/suggestions"

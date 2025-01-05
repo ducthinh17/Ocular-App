@@ -142,7 +142,7 @@ const CameraContent = () => {
 
       {/* Take a New Picture Button */}
       <button
-        onClick={handleChooseImage}
+        onClick={() => navigate("/upload")}
         style={{
           marginBottom: "50px",
           display: "flex",
