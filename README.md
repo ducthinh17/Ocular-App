@@ -1,5 +1,5 @@
 <p align="center"> <a href="https://git.io/typing-svg"> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=900&size=50&pause=1000&color=30FFDD&width=800&height=80&lines=Welcome+to+DoctorAI+%E2%80%93+Ocular+Prediction+App" alt="Typing SVG" /> </a> </p> <p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=30&pause=1000&color=F96666&repeat=false&width=400&height=110&lines=Smarter+Vision+Starts+Here" alt="Typing SVG" /> </p> <div align="center">
-  <img src="./banner.png" alt="Banner" width="100%" height="100%"> </div>
+  <img src="./banner.png" alt="Banner" width="70%" height="70%"> </div>
   <h3 align="center">Redefining medical diagnostics with deep learning and precision 🧠🩺</h3>
 # 👁️ DoctorAI – Ocular Disease Prediction App
 
