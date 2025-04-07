@@ -21,13 +21,20 @@ DoctorAI is trained to detect the following conditions:
 > 🔗 **Live API Endpoint** (hosted on Railway):  
 > [https://doctorai-ocular.up.railway.app/](https://doctorai-ocular.up.railway.app/)
 
----
-
 ## 📁 Project Structure
 
-Ocular-App/ ├── public/ ├── src/ │ ├── assets/ │ ├── components/ │ ├── pages/ │ ├── App.jsx │ └── predict.js <-- API integration here ├── package.json └── README.md
-
----
+```
+Ocular-App/
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── App.jsx
+│   └── predict.js       <-- API integration here
+├── package.json
+└── README.md
+```
 
 ## 🛠️ Installation & Setup
 
