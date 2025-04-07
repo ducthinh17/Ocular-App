@@ -24,17 +24,42 @@ DoctorAI is trained to detect the following conditions:
 ## 📁 Project Structure
 
 ```
-Ocular-App/
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── App.jsx
-│   └── predict.js       <-- API integration here
-├── package.json
-└── README.md
+src/
+├── app.ts
+├── css/
+├── global.d.ts
+├── components/
+├── database/
+├── hooks.ts
+├── pages/
+│   ├── AccountDetails.tsx
+│   ├── Calendar.tsx
+│   ├── Guild.tsx
+│   ├── Records.tsx
+│   ├── Result_medical.tsx
+│   ├── Suggestions.tsx
+│   ├── Survey.css
+│   ├── Survey.tsx
+│   ├── calendar_date.tsx
+│   ├── camera.tsx         <-- API integration here
+│   ├── cart/
+│   ├── category.tsx
+│   ├── history.tsx
+│   ├── historytest.tsx
+│   ├── index/
+│   ├── notification.tsx
+│   ├── profile.tsx
+│   ├── result.tsx
+│   ├── search/
+│   ├── statistics.tsx
+│   ├── stepGuide.tsx
+│   └── treatments.tsx
+├── state.ts
+├── static/
+├── types/
+└── utils/
 ```
+
 
 ## 🛠️ Installation & Setup
 
