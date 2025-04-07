@@ -19,7 +19,8 @@ DoctorAI is trained to detect the following conditions:
 ## 🚀 Demo
 
 > 🔗 **Live API Endpoint** (hosted on Railway):  
-> [https://doctorai-ocular.up.railway.app/](https://doctorai-ocular.up.railway.app/)
+> api: [https://doctorai-ocular.up.railway.app/](https://doctorai-ocular.up.railway.app/)
+> web: [https://doctor-calculate2-0.vercel.app/](https://doctor-calculate2-0.vercel.app/) 
 
 ## 📁 Project Structure
 
